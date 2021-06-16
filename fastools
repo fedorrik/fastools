@@ -1,0 +1,118 @@
+#!/bin/bash
+
+usage='Usage: fastools <subcommand>'
+commands='Sub-commands:\n\theaders\n\tseqlen\n\tmfa2cons\n\trevcomp\n\tsplit\n\tgetrecord\n\tsort\n\tsample\n\tpretty'
+
+path='/home/fedor/Programs/my/fastools/scripts'
+python_interpreter=python3.8
+
+
+if [[ $1 == 'seqlen' ]]
+then
+    if [[ $# == 2 ]]
+    then
+        $python_interpreter $path/seqlen.py $2
+    else
+        echo 'Count length of sequences in fasta'
+        echo "Usage: fastools seqlen <input.fa>"        
+    fi
+
+
+elif [[ $1 == 'headers' ]]
+then
+    if [[ $# == 2 ]]
+    then
+        grep '>' $2 | cut -c 2-
+    else
+        echo 'Print all headers in fasta'
+        echo "Usage: fastools headers <input.fa>"        
+    fi
+
+
+elif [[ $1 == 'mfa2cons' ]]
+then
+    if [[ $# == 2 ]]
+    then
+        $python_interpreter $path/mfa2cons.py $2
+    elif [[ $3 == '-n' ]]
+    then
+        $python_interpreter $path/mfa2cons_n.py $2
+    else
+        echo 'Create consensus sequence from fasta with alignment'
+        echo "Usage: fastools mfa2cons <input.mfa> [options]"
+        echo -e "Options:\n\t-n\tPut \"N\" if frequence of the most frequent nucleotide is 50% or less. Default: put the most frequent nucleotide."
+    fi
+
+
+elif [[ $1 == 'split' ]]
+then
+    if [[ $# == 2 ]]
+    then
+        $python_interpreter $path/split.py $2
+    else
+        echo "Split multiple fasta to separate fastas in current directory"
+        echo "Usage: fastools split <input.fa>"        
+    fi
+
+
+elif [[ $1 == 'getrecord' ]]
+then
+    if [[ $# == 3 ]]
+    then
+        $python_interpreter $path/getrecord.py $2 $3
+    else
+        echo "Find record in fasta by id"
+        echo "Usage: fastools getrecord <id> <input.fa>"        
+    fi
+
+
+elif [[ $1 == 'pretty' ]]
+then
+    if [[ $# == 2 ]]
+    then
+        $python_interpreter $path/pretty.py $2
+    else
+        echo "Write fasta into file with 60bp in string"
+        echo "Usage: fastools pretty <input.fa> <output.fa>"        
+    fi
+
+
+elif [[ $1 == 'sort' ]]
+then
+    if [[ $# == 2 ]]
+    then
+        $python_interpreter $path/sort.py $2
+    else
+        echo "Sort fasta by ids"
+        echo "Usage: fastools sort <input.fa>"        
+    fi
+
+
+elif [[ $1 == 'sample' ]]
+then
+    if [[ $# == 3 ]]
+    then
+        cat $2 | awk '/^>/ { if(i>0) printf("\n"); i++; printf("%s\t",$0); next;} {printf("%s",$0);} END { printf("\n");}' | shuf | head -n $3 | awk '{printf("%s\n%s\n",$1,$2)}'
+    else
+        echo "Get random sample of n sequences from multiple fasta"
+        echo "Usage: fastools sample <input.fa> <n>" 
+    fi
+
+
+elif [[ $1 == 'revcomp' ]]
+then
+    if [[ $# == 2 ]]
+    then
+         $python_interpreter $path/revcomp.py $2
+    else
+        echo "Make reverse compliment fasta"
+        echo "Usage: fastools revcomp <input.fa>"        
+    fi
+
+
+else
+    echo $usage
+    echo -e $commands
+    exit 1 
+fi
+
