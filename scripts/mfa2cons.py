@@ -32,5 +32,6 @@ for i in range(len(seqs[0])):
         continue
     cons += most_freq[1]
 
-print('>CONS-{}\n{}'.format('.'.join(mfa.split('.')[:-1]), cons))
+name = '.'.join(mfa.split('.')[:-1]).split('/')[-1]
+print('>CONS-{}\n{}'.format(name, cons))
 
