@@ -1,37 +1,30 @@
 # Usage: python3 mfa2cons.py input.mfa output_cons.fa
+from collections import Counter
+from Bio.SeqIO import parse
 from sys import argv
 
 
 mfa = argv[1]
-# Create list with sequenses
-seqs = []
-with open(mfa) as f:
-    seq = ''
-    for line in f:
-        if line[0] != '>':
-            seq += line.strip()
-        else:
-            seqs.append(seq)
-            seq = ''
-seqs = seqs[1:]
-
-# Create consensus sequence
+# create list with seqs
+seqs = [record.seq for record in parse(mfa, 'fasta')]
+# create consensus sequence
 cons = ''
 for i in range(len(seqs[0])):
-    pos = []
+    position = []
     for seq in seqs:
         base = seq[i]
-        pos.append(base)
-    a = (pos.count('A'), 'A')
-    t = (pos.count('T'), 'T')
-    g = (pos.count('G'), 'G')
-    c = (pos.count('C'), 'C')
-    gap = (pos.count('-'), '-')
-    most_freq = max((a, t, g, c, gap))
-    if most_freq[1] == '-':
+        position.append(base)
+    most_freq = Counter(position).most_common(2)
+    # put "N" if there are two most freq bases (not "-")
+    if len(most_freq) > 1 and most_freq[0][1] == most_freq[1][1] and most_freq[0][0] != '-' and most_freq[1][0] != '-':
+        cons += 'N'
+    # append nothing to cons if gap is most freq
+    elif most_freq[0][0] == '-':
         continue
-    cons += most_freq[1]
-
+    # append most freq
+    else:
+        cons += most_freq[0][0]
+# print cons
 name = '.'.join(mfa.split('.')[:-1]).split('/')[-1]
 print('>CONS-{}\n{}'.format(name, cons))
 
