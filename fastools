@@ -110,6 +110,17 @@ then
     fi
 
 
+elif [[ $1 == 'diff' ]]
+then
+    if [[ $# == 2 ]]
+    then
+         $python_interpreter $path/diff.py $2
+    else
+        echo "Print positions with different bases"
+        echo "Usage: fastools diff <input.mfa>"        
+    fi
+
+
 else
     echo $usage
     echo -e $commands
