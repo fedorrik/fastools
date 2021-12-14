@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage='Usage: fastools <subcommand>'
-commands='Sub-commands:\n\theaders\n\tseqlen\n\tmfa2cons\n\trevcomp\n\tsplit\n\tgetrecord\n\tsort\n\tsample\n\tpretty'
+commands='Sub-commands:\n\theaders\n\tseqlen\n\tmfa2cons\n\trevcomp\n\tsplit\n\tgetrecord\n\tsort\n\tsample\n\tdiff\n\tpretty'
 
 path='/home/fedor/Programs/my/fastools/scripts'
 python_interpreter=python3.8

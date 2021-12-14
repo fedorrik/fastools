@@ -1,4 +1,3 @@
-# Usage: python3 mfa2cons.py input.mfa output_cons.fa
 from collections import Counter
 from Bio.SeqIO import parse
 from sys import argv

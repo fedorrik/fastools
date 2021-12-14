@@ -1,9 +1,8 @@
-# Usage: python3 mfa2cons.py input.mfa output_cons.fa
 from sys import argv
 
 
 mfa = argv[1]
-# Create list with sequenses
+# create list with sequenses
 seqs = []
 with open(mfa) as f:
     seq = ''
@@ -16,7 +15,7 @@ with open(mfa) as f:
 seqs.append(seq)
 seqs = seqs[1:]
 
-# Create consensus sequence
+# create consensus sequence
 cons = ''
 for i in range(len(seqs[0])):
     pos = []
