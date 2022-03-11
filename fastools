@@ -46,12 +46,12 @@ then
 
 elif [[ $1 == 'split' ]]
 then
-    if [[ $# == 2 ]]
+    if [[ $# == 3 ]]
     then
-        $python_interpreter $path/split.py $2
+        $python_interpreter $path/split.py $2 $3
     else
         echo "Split multiple fasta to separate fastas in current directory"
-        echo "Usage: fastools split <input.fa>"        
+        echo "Usage: fastools split <input.fa> <output.dir>"        
     fi
 
 
