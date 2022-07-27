@@ -1,0 +1,32 @@
+#compdef fastools
+#autoload
+
+local curcontext="$curcontext" state line ret=1
+local -a _files
+
+_arguments -C \
+  '1: :->cmds' \
+  '2:: :->args' && ret=0
+
+case $state in
+  cmds)
+    _values "fastools command" \
+	    "headers[Print all headers in fasta]" \
+    	"seqlen[Count length of sequences in fasta]" \
+    	"mfa2cons[Create consensus sequence from fasta with alignment]" \
+    	"revcomp[Make reverse compliment fasta]" \
+    	"split[Split multiple fasta to separate fastas in current directory]" \
+    	"getrecord[Find record in fasta by id]" \
+    	"sort[Sort fasta by ids]" \
+    	"sample[Get random sample of n sequences from multiple fasta]" \
+    	"diff[Print positions with different bases]" \
+    	"kmercnt[Count kmers hits in fasta]" \
+    	"pretty[Write fasta into file with 60bp in string]" 
+    ret=0
+    ;;
+  *)
+    _files
+    ;;
+esac
+
+return ret

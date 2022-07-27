@@ -1,10 +1,10 @@
 #!/bin/bash
 
 usage='Usage: fastools <subcommand>'
-commands='Sub-commands:\n\theaders\n\tseqlen\n\tmfa2cons\n\trevcomp\n\tsplit\n\tgetrecord\n\tsort\n\tsample\n\tdiff\n\tpretty'
+commands='Sub-commands:\n\theaders\n\tseqlen\n\tmfa2cons\n\trevcomp\n\tsplit\n\tgetrecord\n\tsort\n\tsample\n\tdiff\n\tkmercnt\n\tpretty'
 
 path='/home/fedor/Programs/my/fastools/scripts'
-python_interpreter=python3.8
+python_interpreter=~/Programs/biopy/bin/python3.9
 
 
 if [[ $1 == 'seqlen' ]]
@@ -118,6 +118,17 @@ then
     else
         echo "Print positions with different bases"
         echo "Usage: fastools diff <input.mfa>"        
+    fi
+
+
+elif [[ $1 == 'kmercnt' ]]
+then
+    if [[ $# == 3 ]]
+    then
+        $python_interpreter $path/kmercnt.py $2 $3
+    else
+        echo "Count kmers hits in fasta"
+        echo "Usage: fastools kmercnt <input.fa> <kmer>"        
     fi
 
 
