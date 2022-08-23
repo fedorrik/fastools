@@ -106,7 +106,7 @@ then
          $python_interpreter $path/revcomp.py $2
     else
         echo "Make reverse compliment fasta"
-        echo "Usage: fastools revcomp <input.fa>"        
+        echo "Usage: fastools revcomp <input.fa or seqence>"        
     fi
 
 
