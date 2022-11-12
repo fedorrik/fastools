@@ -62,6 +62,7 @@ then
         $python_interpreter $path/getrecord.py $2 $3
     else
         echo "Find record in fasta by id"
+        echo "Work with gziped files (check for .gz at the end)"
         echo "Usage: fastools getrecord <id> <input.fa>"        
     fi
 
