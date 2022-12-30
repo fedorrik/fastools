@@ -1,10 +1,10 @@
 #!/bin/bash
 
 usage='Usage: fastools <subcommand>'
-commands='Sub-commands:\n\theaders\n\tseqlen\n\tmfa2cons\n\trevcomp\n\tsplit\n\tgetrecord\n\tsort\n\tsample\n\tdiff\n\tkmercnt\n\tpretty'
+commands='Sub-commands:\n\theaders\n\tseqlen\n\tmfa2cons\n\trevcomp\n\tsplit\n\tgetrecord\n\tsort\n\tsample\n\tdiff\n\tkmercnt\n\tsubseq\n\tpretty'
 
 path='/home/fedor/Programs/my/fastools/scripts'
-python_interpreter=~/Programs/biopy/bin/python3.9
+python_interpreter=python3
 
 
 if [[ $1 == 'seqlen' ]]
@@ -62,7 +62,6 @@ then
         $python_interpreter $path/getrecord.py $2 $3
     else
         echo "Find record in fasta by id"
-        echo "Work with gziped files (check for .gz at the end)"
         echo "Usage: fastools getrecord <id> <input.fa>"        
     fi
 
@@ -134,6 +133,17 @@ then
         echo "Count kmers hits in fasta"
         echo "Usage: fastools kmercnt <input.fa> <kmer> [options]"
         echo -e "Options:\n\t-bed\tOutput format: 3-column bed. Default: table with number of hits in each sequence and total number of hits in the fasta." 
+    fi
+
+
+elif [[ $1 == 'subseq' ]]
+then
+    if [[ $# == 3 ]]
+    then
+         $python_interpreter $path/subseq.py $2 $3
+    else
+        echo "Print subsequence"
+        echo "Usage: fastools subseq <input.fa> <seq_id:start-end>"        
     fi
 
 

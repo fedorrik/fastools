@@ -20,4 +20,5 @@ Commands:
 - seqlen     -- Count length of sequences in fasta
 - sort       -- Sort fasta by ids
 - split      -- Split multiple fasta to separate fastas in current directory
+- subseq     -- Print subsequence
 

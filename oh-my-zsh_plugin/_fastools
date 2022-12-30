@@ -21,6 +21,7 @@ case $state in
     	"sample[Get random sample of n sequences from multiple fasta]" \
     	"diff[Print positions with different bases]" \
     	"kmercnt[Count kmers hits in fasta]" \
+		"subseq[Print subsequence]" \
     	"pretty[Write fasta into file with 60bp in string]" 
     ret=0
     ;;
