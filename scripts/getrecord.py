@@ -1,5 +1,5 @@
+import gzip
 from Bio.SeqIO import parse, write
-from gzip import open
 from sys import argv
 
 
@@ -8,7 +8,7 @@ infa = argv[2]
 
 
 if infa[-3:] == '.gz':
-    with open(infa, 'rt') as handle:
+    with gzip.open(infa, 'rt') as handle:
         for record in parse(handle, 'fasta'):
             if record.id == wanted_id:
                 print('>{}\n{}'.format(record.id, record.seq))

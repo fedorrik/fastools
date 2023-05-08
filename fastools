@@ -68,9 +68,9 @@ then
 
 elif [[ $1 == 'pretty' ]]
 then
-    if [[ $# == 2 ]]
+    if [[ $# == 3 ]]
     then
-        $python_interpreter $path/pretty.py $2
+        $python_interpreter $path/pretty.py $2 $3
     else
         echo "Write fasta into file with 60bp in string"
         echo "Usage: fastools pretty <input.fa> <output.fa>"        
