@@ -3,7 +3,7 @@
 usage='Usage: fastools <subcommand>'
 commands='Sub-commands:\n\theaders\n\tseqlen\n\tmfa2cons\n\trevcomp\n\tsplit\n\tgetrecord\n\tsort\n\tsample\n\tdiff\n\tkmercnt\n\tsubseq\n\tpretty'
 
-path='/home/fedor/Programs/my/fastools/scripts'
+path='/home/fedor/sync/bioinformatics/centromere/soft/fastools/scripts'
 python_interpreter=python3
 
 
