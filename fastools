@@ -129,10 +129,14 @@ then
     elif [[ $4 == '-bed' ]]
     then
         $python_interpreter $path/kmercnt_bed.py $2 $3
+    elif [[ $4 == '-rc' ]]
+    then
+        $python_interpreter $path/kmercnt_rc.py $2 $3
     else
+    
         echo "Count kmers hits in fasta"
-        echo "Usage: fastools kmercnt <input.fa> <kmer> [options]"
-        echo -e "Options:\n\t-bed\tOutput format: 3-column bed. Default: table with number of hits in each sequence and total number of hits in the fasta." 
+        echo "Usage: fastools kmercnt <input.fa> <kmer> [option]"
+        echo -e "Options:\n\t-bed\tOutput format: 3-column bed. Default: table with number of hits in each sequence and total number of hits in the fasta.\n\t-rc\tCount both forward and reverse-complement version of kmer. Doesn't work with -bed yet." 
     fi
 
 
